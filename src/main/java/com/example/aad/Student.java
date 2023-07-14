@@ -19,18 +19,18 @@ public class Student extends HttpServlet {
         String name = req.getParameter("name");
         String address = req.getParameter("address");
 
-        System.out.println(id + "\n" + name + "\n" + address);
+//        System.out.println(id + "\n" + name + "\n" + address);
 
-//        try {
-//            if (saveStudent(id, name, address)) {
-//                System.out.println(" ADD Successfully !!!😁");
-//
-//            } else {
-//                System.out.println(" Something Wrong !!!🤔");
-//            }
-//        } catch (ClassNotFoundException | SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            if (saveStudent(id, name, address)) {
+                System.out.println(" ADD Successfully !!!😁");
+
+            } else {
+                System.out.println(" Something Wrong !!!🤔");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
@@ -41,11 +41,11 @@ public class Student extends HttpServlet {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aad", "root", "1234");
         PreparedStatement statement = connection.prepareStatement("INSERT INTO student VALUES (?,?,?)");
 
-//        statement.setString(1, id);
-//        statement.setString(2, name);
-//        statement.setString(3, address);
-//        return statement.executeUpdate() > 0;
-        return false;
+        statement.setString(1, id);
+        statement.setString(2, name);
+        statement.setString(3, address);
+
+        return statement.executeUpdate() > 0;
 
     }
 
