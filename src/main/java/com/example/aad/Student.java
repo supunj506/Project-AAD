@@ -35,18 +35,19 @@ public class Student extends HttpServlet {
 
     }
 
-//    private boolean saveStudent(String id, String name, String address) throws ClassNotFoundException, SQLException {
-//
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aad", "root", "1234");
-//        PreparedStatement statement = connection.prepareStatement("INSERT INTO student VALUES (?,?,?)");
-//
+    private boolean saveStudent(String id, String name, String address) throws ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aad", "root", "1234");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO student VALUES (?,?,?)");
+
 //        statement.setString(1, id);
 //        statement.setString(2, name);
 //        statement.setString(3, address);
 //        return statement.executeUpdate() > 0;
-//
-//    }
+        return false;
+
+    }
 
 
 }
