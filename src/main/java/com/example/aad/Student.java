@@ -1,6 +1,8 @@
 package com.example.aad;
 
 import jakarta.json.*;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.stream.JsonParser;
 
 import javax.servlet.ServletException;
@@ -41,16 +43,16 @@ public class Student extends HttpServlet {
 //            throw new RuntimeException(e);
 //        }
 
+//        JsonReader reader = Json.createReader(req.getReader());
+//        JsonObject jsonObject = reader.readObject();
+//        System.out.println( jsonObject.getString("id"));
+
         JsonReader reader = Json.createReader(req.getReader());
-        JsonObject jsonObject = reader.readObject();
-        System.out.println( jsonObject.getString("id"));
-
-
-
-
-
-
-
+        JsonArray jsonValues = reader.readArray();
+        for (int i =0;i< jsonValues.size();i++){
+            JsonObject jsonObject = jsonValues.getJsonObject(i);
+            System.out.println(jsonObject.getString("id")+"  :  "+jsonObject.getString("name"));
+        }
 
 
     }
