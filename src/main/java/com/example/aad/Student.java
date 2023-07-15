@@ -1,5 +1,8 @@
 package com.example.aad;
 
+import jakarta.json.*;
+import jakarta.json.stream.JsonParser;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,26 +14,43 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Student extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("running");
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        System.out.println("work fine post method");
 
-        String id = req.getParameter("id");
-        String name = req.getParameter("name");
-        String address = req.getParameter("address");
+//        String id = req.getParameter("id");
+//        String name = req.getParameter("name");
+//        String address = req.getParameter("address");
 
 //        System.out.println(id + "\n" + name + "\n" + address);
 
-        try {
-            if (saveStudent(id, name, address)) {
-                System.out.println(" ADD Successfully !!!😁");
+//        try {
+//            if (saveStudent(id, name, address)) {
+//                System.out.println(" ADD Successfully !!!😁");
+//
+//            } else {
+//                System.out.println(" Something Wrong !!!🤔");
+//            }
+//        } catch (ClassNotFoundException | SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
-            } else {
-                System.out.println(" Something Wrong !!!🤔");
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
+        JsonReader reader = Json.createReader(req.getReader());
+        JsonObject jsonObject = reader.readObject();
+        System.out.println( jsonObject.getString("id"));
+
+
+
+
+
+
+
 
 
     }
