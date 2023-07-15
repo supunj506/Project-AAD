@@ -3,9 +3,9 @@ package com.example.aad.dto;
 import java.io.Serializable;
 
 public class StudentDTO implements Serializable {
-    String id;
-    String name;
-    String address;
+    private String id;
+    private String name;
+    private String address;
 
 
     public StudentDTO() {

@@ -57,15 +57,19 @@ public class Student extends HttpServlet {
 //            System.out.println(jsonObject.getString("id")+"  :  "+jsonObject.getString("name"));
 //        }
 
+//        Jsonb jsonb = JsonbBuilder.create();
+//        List<StudentDTO> dtoList = jsonb.fromJson(req.getReader(), new ArrayList<StudentDTO>() {
+//        }.getClass().getGenericSuperclass());
+//        dtoList.forEach(System.out::println);
+
+        //        jsonb.toJson(dtoList, resp.getWriter());
+
+        List<StudentDTO> dtoList = new ArrayList<>();
+        dtoList.add(new StudentDTO("S004","Saman","Kaluthara"));
+        dtoList.add(new StudentDTO("S005","Sameen","Kalutra"));
+        resp.setContentType("application/json");
         Jsonb jsonb = JsonbBuilder.create();
-        List<StudentDTO> dtoList = jsonb.fromJson(req.getReader(), new ArrayList<StudentDTO>() {
-        }.getClass().getGenericSuperclass());
-        dtoList.forEach(System.out::println);
-
-
-//        jsonb.toJson(dtoList, resp.getWriter());
-
-
+        jsonb.toJson(dtoList, resp.getWriter());
 
 
     }
