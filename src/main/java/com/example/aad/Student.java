@@ -1,5 +1,6 @@
 package com.example.aad;
 
+import com.example.aad.dto.StudentDTO;
 import jakarta.json.*;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
@@ -14,6 +15,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student extends HttpServlet {
 
@@ -47,12 +50,22 @@ public class Student extends HttpServlet {
 //        JsonObject jsonObject = reader.readObject();
 //        System.out.println( jsonObject.getString("id"));
 
-        JsonReader reader = Json.createReader(req.getReader());
-        JsonArray jsonValues = reader.readArray();
-        for (int i =0;i< jsonValues.size();i++){
-            JsonObject jsonObject = jsonValues.getJsonObject(i);
-            System.out.println(jsonObject.getString("id")+"  :  "+jsonObject.getString("name"));
-        }
+//        JsonReader reader = Json.createReader(req.getReader());
+//        JsonArray jsonValues = reader.readArray();
+//        for (int i =0;i< jsonValues.size();i++){
+//            JsonObject jsonObject = jsonValues.getJsonObject(i);
+//            System.out.println(jsonObject.getString("id")+"  :  "+jsonObject.getString("name"));
+//        }
+
+        Jsonb jsonb = JsonbBuilder.create();
+        List<StudentDTO> dtoList = jsonb.fromJson(req.getReader(), new ArrayList<StudentDTO>() {
+        }.getClass().getGenericSuperclass());
+        dtoList.forEach(System.out::println);
+
+
+//        jsonb.toJson(dtoList, resp.getWriter());
+
+
 
 
     }
